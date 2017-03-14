@@ -45,3 +45,10 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.db
+.vs/Listat_Junior_Task/v15/Browse.VC.opendb
+*.db-shm
+*.filters
+Listat_Junior_App/Listat_Junior_app.vcxproj.user
+*.vcxproj
+*.db-wal
