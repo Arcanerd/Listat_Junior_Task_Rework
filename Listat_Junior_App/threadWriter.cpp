@@ -9,11 +9,6 @@ threadWriter::threadWriter(std::string _filepath, std::vector<std::vector<int>> 
 {
 }
 
-
-threadWriter::~threadWriter()
-{
-}
-
 std::string threadWriter::get_filepath() const
 {
 	return filepath; 

@@ -2,10 +2,6 @@
 #include "theQueue.h"
 
 
-theQueue::theQueue()
-{
-}
-
 theQueue::theQueue(std::shared_ptr<domNode> &root)
 {
 	if (root->get_sybling() != nullptr) {
@@ -13,10 +9,6 @@ theQueue::theQueue(std::shared_ptr<domNode> &root)
 		finish = intrvls.size() - 1;
 		start = 0;
 	}
-}
-
-theQueue::~theQueue()
-{
 }
 
 void theQueue::fill_intrvls(std::shared_ptr<domNode> &node)

@@ -60,9 +60,6 @@ domNode::domNode(std::string &_tag, spNode &_parent, cinterval &_interval):
 	set_closing_tag();
 }
 
-domNode::~domNode()
-{}
-
 void domNode::set_tag(const std::string _tag) { tag = _tag; };
 void domNode::set_next(const spNode &_next) { next = _next; }
 void domNode::set_parent(const spNode &_parent) { parent = _parent; }

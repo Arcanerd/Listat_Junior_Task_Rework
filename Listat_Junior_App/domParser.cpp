@@ -38,9 +38,6 @@ domParser::domParser(std::string _filepath):
 	file.close();
 }
 
-domParser::~domParser()
-{
-}
 
 std::string domParser::get_filepath() const 
 {
