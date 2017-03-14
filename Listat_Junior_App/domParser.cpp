@@ -48,6 +48,10 @@ void domParser::set_filepath(std::string _path)
 	filepath = _path;
 }
 
+virtual void domParser::read()
+{
+}
+
 bool domParser::simple_parse()
 {
 	bool intervals_closed = false;
