@@ -34,7 +34,7 @@ public:
 	//for interval
 	domNode(std::string &_tag, spNode &_parent, cinterval &_interval);
 	
-	~domNode();
+	~domNode() = default;
 
 	void set_tag(const std::string _tag);
 	void set_next(const spNode &_next);

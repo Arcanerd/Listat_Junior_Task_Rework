@@ -18,7 +18,7 @@ public:
 	theQueue();
 	theQueue(std::shared_ptr<domNode> &root);
 
-	~theQueue();
+	~theQueue() = default;
 
 	cinterval get_interval();
 	bool is_empty() const;

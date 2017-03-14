@@ -18,7 +18,7 @@ private:
 
 public:
 	threadWriter(std::string _filepath, std::vector<std::vector<int>> &data);
-	virtual ~threadWriter();
+	virtual ~threadWriter() = default;
 	
 	std::string get_filepath() const;
 	void set_filepath(std::string path);

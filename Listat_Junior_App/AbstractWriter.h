@@ -9,8 +9,8 @@ class AbstractWriter
 private:	
 
 public:
-	AbstractWriter();
-	virtual ~AbstractWriter();
+	
+	virtual ~AbstractWriter() = default;
 	virtual void write() = 0;
 };
 

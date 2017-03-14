@@ -19,7 +19,7 @@ public:
 
 	primeThread() {};
 	primeThread(std::shared_ptr<theQueue> _sp_queue);
-	~primeThread();
+	~primeThread() = default;
 
 	void ignite();
 

@@ -17,7 +17,7 @@ private:
 
 public:
 	domParser(std::string _filepath);
-	~domParser();
+	~domParser() = default;
 
 	bool simple_parse();
 
