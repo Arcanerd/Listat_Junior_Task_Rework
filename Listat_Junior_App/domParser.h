@@ -1,11 +1,12 @@
 #pragma once
 #include "AbstractReader.h"
 #include "domNode.h"
+#include "theQueue.h"
 
 class theQueue;
 
 class domParser :
-	public AbstractReader
+	public AbstractReader <theQueue>
 {
 private:
 	
@@ -24,10 +25,10 @@ public:
 
 	std::shared_ptr<domNode> get_root();
 
-	virtual std::string get_filepath() const;
+	virtual const char* get_filepath() override;
 	void set_filepath(std::string _path);
-
-	virtual std::shared_ptr<theQueue> get_intervals();//use c++11 override
+	virtual std::shared_ptr<theQueue> get_data() override;
+	std::shared_ptr<theQueue> get_intervals();//use c++11 override
 	//supporting routing should be placed inside anonymous namespace
 
 	friend std::string remove_insignificant_spaces(std::string &_inspstr); //why is it declared as friend but private/protected members of domParser class isn't used inside?

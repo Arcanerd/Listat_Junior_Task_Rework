@@ -14,8 +14,8 @@ int main(int argc, char** argv)
 	std::string filepath = get_input(argc, argv);
 
 
-	std::shared_ptr<AbstractReader> parser(new domParser (filepath));
-	std::shared_ptr<theQueue> queue = parser->get_intervals();
+	std::shared_ptr<AbstractReader<theQueue>> parser(new domParser (filepath));
+	std::shared_ptr<theQueue> queue = parser->get_data();
 
 	primeThread primes_calc(queue);//how to start calculation in 4 threads?
 	primes_calc.ignite();//inside we stops main thread when falls into join(). Where is calculation in separate thread if we must wait for completing?

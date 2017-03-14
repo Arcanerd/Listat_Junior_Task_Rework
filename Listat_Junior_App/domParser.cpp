@@ -39,16 +39,20 @@ domParser::domParser(std::string _filepath):
 }
 
 
-std::string domParser::get_filepath() const 
+const char* domParser::get_filepath() 
 {
-	return filepath; 
+	return filepath.c_str();
 };
 void domParser::set_filepath(std::string _path)
 {
 	filepath = _path;
 }
+std::shared_ptr<theQueue> domParser::get_data()
+{
+	return get_intervals();
+}
 
-virtual void domParser::read()
+ void domParser::read()
 {
 }
 
