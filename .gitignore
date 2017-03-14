@@ -54,3 +54,13 @@ Listat_Junior_App/Listat_Junior_app.vcxproj.user
 *.db-wal
 *.ipch
 .vs/Listat_Junior_Task/v15/.suo
+*.log
+Listat_Junior_App/x64/Debug/Listat_J.C25B2CCF.tlog/unsuccessfulbuild
+*.lastbuildstate
+Listat_Junior_App/x64/Debug/Listat_Junior_app.obj
+*.pch
+*.tlog
+*.pdb
+*.obj
+Listat_Junior_App/x64/Debug/vc141.idb
+*.idb
