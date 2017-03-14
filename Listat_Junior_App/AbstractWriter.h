@@ -1,4 +1,5 @@
 #pragma once
+#include "ReturnCodes.h"
 
 class AbstractWriter
 {

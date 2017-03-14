@@ -1,74 +1,58 @@
 #include "stdafx.h"
 #include "DOMParser.h"
+#include "ReturnCodes.h"
 
 //in general try to use the constructors only to construct an instance (invariant) withoud business logic or tricky initialization
 //e.g. how will you know that file.fail() if you exclude interaction with user here?
+
+const std::string root_opening_tag = "<root>";
+const std::string interval_openig_tag = "<interval>";
+const std::string Intervals_Openig_Tag = "<intervals>";
+const std::string Intervals_Closing_Tag = "</intervals>";
+
+
 domParser::domParser(std::string _filepath):
 	filepath(_filepath)
 {
+	
+}
+
+STATUS::OPENING_STATUS domParser::read()
+{
+	std::ifstream file;
+	std::string input;
+
 	//check file;
 	bool file_incorrect = true;
-	// many developers consider do as a bad style. not so bad as goto but ...
-	do {
-		
-		file.open(filepath, std::ifstream::in);
 
-		if (file.fail()) {
-			std::cout << "ERROR! Could not open the file!" << std::endl;
-			std::cout << "Please specify file: ";
-			std::getline(std::cin, filepath);//pay attention how are you going to write a unit test to this part of code
+	file.open(filepath, std::ifstream::in);
+	if (file.fail()) {
+		std::cout << "ERROR! Could not open the file!" << std::endl;
+		return STATUS::OPENING_STATUS::COULD_NOT_OPEN;
+	}
+	else {
+		std::getline(file, input);
+		if (input == root_opening_tag) {
+			file_incorrect = false;
+			root = std::shared_ptr<domNode>(new domNode(input));
+			root->set_next(nullptr);
 		}
-
-		else {
-			std::getline(file, input);
-			//any constant should be moved in the to of cpp file and properly named
-			// only meaningful and distinctive names of constants should be present inside source code
-			if (input == "<root>") {
-				file_incorrect = false;
-				root = std::shared_ptr<domNode>(new domNode(input));
-				root->set_next(nullptr);
-			}
-		}
-	} while (file.fail() || file_incorrect);
-
-
-	//read file build tree
-	assert(simple_parse() == true);//in general it is an error because assert are excluded in release build!!!
-
-	file.close();
-}
-
-
-const char* domParser::get_filepath() 
-{
-	return filepath.c_str();
-};
-void domParser::set_filepath(std::string _path)
-{
-	filepath = _path;
-}
-std::shared_ptr<theQueue> domParser::get_data()
-{
-	return get_intervals();
-}
-
- void domParser::read()
-{
-}
-
-bool domParser::simple_parse()
-{
+		else
+			return STATUS::OPENING_STATUS::WRONG_STRUCTURE;
+	}
+	
+	//read intervals from file
 	bool intervals_closed = false;
 	do {
 		std::getline(file, input);
 		input = remove_insignificant_spaces(input);
-		if(input == "<intervals>"){
+		if (input == Intervals_Openig_Tag) {
 			do {
 				std::getline(file, input);
 				input = remove_insignificant_spaces(input);
-				if (input == "<interval>") {
-					int low, high;// code styles of production code very often require initialization of any variable.
-					
+				if (input == interval_openig_tag) {
+					int low = 0, high = 0;
+
 					std::getline(file, input);
 					input = remove_insignificant_spaces(input);
 					low = extract_bound(input);
@@ -78,27 +62,40 @@ bool domParser::simple_parse()
 					high = extract_bound(input);
 
 					cinterval interval(low, high);
-					std::string tag = "interval";
+					std::string tag = interval_openig_tag;
 					std::shared_ptr<domNode> new_spnode(new domNode(tag, root, interval));
 					root->append_sybling(new_spnode);
 				}
-			} while (input != "</intervals>");
+			} while (input != Intervals_Closing_Tag);
 			intervals_closed = true;
 		}
 	} while (file.good() && intervals_closed);
-	
-	if(!file.good() && intervals_closed == false)
-		return false;
-	else return true;
+
+	if (!file.good() && intervals_closed == false) {
+		return STATUS::OPENING_STATUS::WRONG_STRUCTURE;
+		file.close();
+	}
+	file.close();
+	return STATUS::OPENING_STATUS::EVERYTHING_OK;
 }
+
+
 std::shared_ptr<domNode> domParser::get_root()
 {
 	return root;
 }
-
-std::shared_ptr<theQueue> domParser::get_intervals()
+const char* domParser::get_filepath()
 {
-	std::shared_ptr<theQueue> ret_queue = std::make_shared<theQueue>(this->get_root());
+	return filepath.c_str();
+};
+void domParser::set_filepath(std::string _path)
+{
+	filepath = _path;
+}
+std::shared_ptr<theQueue> domParser::get_data()
+{
+	std::shared_ptr<theQueue> ret_queue;
+	ret_queue = std::make_shared<theQueue>(this->get_root());
 	return ret_queue;
 }
 

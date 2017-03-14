@@ -15,6 +15,7 @@ int main(int argc, char** argv)
 
 
 	std::shared_ptr<AbstractReader<theQueue>> parser(new domParser (filepath));
+	parser->read();
 	std::shared_ptr<theQueue> queue = parser->get_data();
 
 	primeThread primes_calc(queue);//how to start calculation in 4 threads?

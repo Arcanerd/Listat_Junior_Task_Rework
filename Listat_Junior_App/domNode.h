@@ -4,9 +4,6 @@
 class domNode
 {
 	typedef std::shared_ptr<domNode> spNode;
-	//typedef std::shared_ptr<cinterval> spInterval;
-
-public:
 
 private:
 
