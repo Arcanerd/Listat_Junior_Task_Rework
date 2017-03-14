@@ -4,6 +4,7 @@
 #include "domNode.h"
 
 //add comments what is intent of creating this class
+//this class simulates queue of 
 class theQueue
 {
 	std::vector<cinterval> intrvls;
@@ -15,7 +16,7 @@ class theQueue
 	cinterval pop_front_interval();
 
 public:
-	theQueue();
+	//theQueue();
 	theQueue(std::shared_ptr<domNode> &root);
 
 	~theQueue() = default;

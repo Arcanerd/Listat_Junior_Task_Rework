@@ -64,3 +64,9 @@ Listat_Junior_App/x64/Debug/Listat_Junior_app.obj
 *.obj
 Listat_Junior_App/x64/Debug/vc141.idb
 *.idb
+*.exe
+x64/Debug/Listat_Junior_App.ilk
+x64/Debug/Listat_Junior_App.exe
+*.ilk
+x64/Debug/Listat_Junior_App.ilk
+*.exe

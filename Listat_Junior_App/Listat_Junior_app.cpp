@@ -5,7 +5,7 @@
 #include "AbstractReader.h"
 #include "domParser.h"
 #include "primeThread.h"
-#include "threadWriter.h"
+#include "Writer.h"
 
 std::string get_input(int argc, char** argv);
 
@@ -21,7 +21,7 @@ int main(int argc, char** argv)
 	primes_calc.ignite();//inside we stops main thread when falls into join(). Where is calculation in separate thread if we must wait for completing?
 
 	std::string write_path = parser->get_filepath();
-	std::shared_ptr<AbstractWriter> writer(new threadWriter(write_path, primes_calc.get_primes()));
+	std::shared_ptr<AbstractWriter> writer(new Writer(write_path, primes_calc.get_primes()));
 	writer->write();
 
 	std::cout << "Done!" << std::endl;
@@ -35,7 +35,11 @@ std::string get_input(int argc, char** argv) {
 	else if (argc == 2)
 		return argv[1];
 	else {
-		//it looks like you choose another error handling strategy - writing error messages!
-		//throw std::out_of_range::exception("Error! Too many arguments!");
+		std::cout << "Error! Too many arguments!" << std::endl;
+		std::cout << "Please specify filepath manualy: ";
+
+		std::string manual_path;
+		std::cin >> manual_path;
+		return manual_path;
 	}
 }
