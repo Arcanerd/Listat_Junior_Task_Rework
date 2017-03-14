@@ -13,7 +13,7 @@ class primeThread
 	
 	void run();
 	void generate_primes(cinterval &_intrvl);
-	//bool is_prime(int _num);
+	bool is_prime(int _num);
 
 public:
 
@@ -23,7 +23,6 @@ public:
 
 	void ignite();
 
-	bool is_prime(int _num);
 
 	std::vector<std::vector<int>> get_primes() const;	
 };
