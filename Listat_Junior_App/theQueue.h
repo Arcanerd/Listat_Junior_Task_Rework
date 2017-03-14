@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "domNode.h"
+
 //add comments what is intent of creating this class
 class theQueue
 {
