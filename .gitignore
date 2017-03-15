@@ -50,7 +50,6 @@ Temporary Items
 *.db-shm
 *.filters
 *.user
-*.vcxproj
 *.db-wal
 *.ipch
 *.suo
