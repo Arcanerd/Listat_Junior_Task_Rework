@@ -6,7 +6,6 @@ class domNode
 	typedef std::shared_ptr<domNode> spNode;
 
 private:
-
 	std::string tag;
 	std::string closing_tag;
 	spNode next;

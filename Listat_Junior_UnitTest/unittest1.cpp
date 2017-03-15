@@ -4,6 +4,7 @@
 #include "domParser.h"
 #include "Writer.h"
 #include "utilityFunctions.h"
+#include "domNode.h"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -29,10 +30,27 @@ namespace Listat_Junior_UnitTest
 
 	TEST_CLASS(TC_domNode)
 	{
+		typedef std::shared_ptr<domNode> spNode;
+
 	public:
 		TEST_METHOD(domNode_Constructors_Test)
 		{
-			domNode dom_node1(std::string("tag"));
+			std::string tag = "tag";			
+			spNode nulshptr = nullptr;
+			cinterval interval(0, 0);
+
+			domNode dom_node1(tag);
+				
+			//global
+			domNode(tag, nulshptr, nulshptr, nulshptr, interval);
+			//for root
+			domNode dom_node3(tag);
+			//for noninterval basic
+			domNode(tag, nulshptr);
+			//for noninterval
+			domNode(tag, nulshptr, nulshptr, nulshptr);
+			//for interval
+			domNode(tag, nulshptr, interval);
 		}
 	};
 
