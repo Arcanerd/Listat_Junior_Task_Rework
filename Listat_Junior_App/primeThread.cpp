@@ -1,12 +1,15 @@
 #include "stdafx.h"
 
 #include "primeThread.h"
+#include "utilityFunctions.h"
 
 #include <utility>
 #include <thread>
 #include <chrono>
 #include <functional>
 #include <atomic>
+
+using namespace myUtilities;
 
 
 primeThread::primeThread(std::shared_ptr<theQueue> _sp_queue):
@@ -51,22 +54,6 @@ void primeThread::generate_primes(cinterval &_intrvl)
 	
 	primes.emplace_back(result);
 }
-
-bool primeThread::is_prime(int _num) {
-
-	if (_num == 1 || _num == 2 || _num == 3)
-		return true;
-
-	else if (_num % 2 == 0)
-		return false;
-	//try divide for i
-	for (int i = 3; i <= _num / 3; i += 2) {
-		if (_num%i == 0)
-			return false;
-	}
-	return true;
-}
-
 
 std::vector<std::vector<int>> primeThread::get_primes() const
 {

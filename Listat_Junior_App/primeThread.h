@@ -13,7 +13,7 @@ class primeThread
 	
 	void run();
 	void generate_primes(cinterval &_intrvl);
-	bool is_prime(int _num);
+	
 
 public:
 

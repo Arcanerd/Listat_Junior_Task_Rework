@@ -101,6 +101,7 @@ std::shared_ptr<theQueue> domParser::get_data()
 
 //friends
 //this operation usually called trim
+
 std::string remove_insignificant_spaces(std::string &_inspstr)//param isn't const
 {
 	//for me it is preferable to return at once. it allows to keep less details of the context in mind

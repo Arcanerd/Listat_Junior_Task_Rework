@@ -3,6 +3,8 @@
 
 #include "domParser.h"
 #include "Writer.h"
+#include "utilityFunctions.h"
+
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -16,7 +18,7 @@ namespace Listat_Junior_UnitTest
 	TEST_CLASS(TC_Cinterval)
 	{
 	public:
-		TEST_METHOD(Cinterval_Test_1)//Cinterval_Constructors_Test
+		TEST_METHOD(Cinterval_Constructors_Test)
 		{
 			cinterval cint(0, 1);
 			Assert::AreEqual(0, cint.low);
@@ -28,7 +30,7 @@ namespace Listat_Junior_UnitTest
 	TEST_CLASS(TC_domNode)
 	{
 	public:
-		TEST_METHOD(domNode_Test_1)
+		TEST_METHOD(domNode_Constructors_Test)
 		{
 			domNode dom_node1(std::string("tag"));
 		}
@@ -46,51 +48,20 @@ namespace Listat_Junior_UnitTest
 	TEST_CLASS(TC_primeThread)
 	{
 	public:
-		TEST_METHOD(primeThread_Test_1)
+		TEST_METHOD(PrimesCalculation_Test)
 		{
-			primeThread thread;//pay attention to naming: it's strange for developers to find out that thread has method is_prime()
-			/*
-			Assert::AreEqual(false, thread.is_prime(0));
-			Assert::AreEqual(true, thread.is_prime(1));
-			Assert::AreEqual(true, thread.is_prime(2));
-			Assert::AreEqual(true, thread.is_prime(3));
-			Assert::AreEqual(true, thread.is_prime(5));
-			Assert::AreEqual(true, thread.is_prime(7));
-			*/
-		}
+			
+			//pay attention to naming: it's strange for developers to find out that thread has method is_prime()
+		 
+			std::vector<int> primes_set1 = {1, 2, 3, 5, 7, 17, 29, 53, 101, 337, 2147483647};
+			std::vector<int> not_primes_set1 = {0, 4, 6, 8, 9, 10, 95, 106, 841, 999, 1010 };
 
-
-		TEST_METHOD(primeThread_Test_2)//combine all these tests and pass input data as std::vector and name it e.g. primeThread_PrimesCalculation_Test
-		{
-			primeThread thread;
-			/*
-			Assert::AreEqual(true, thread.is_prime(101));
-			Assert::AreEqual(true, thread.is_prime(17));
-			Assert::AreEqual(true, thread.is_prime(29));
-			Assert::AreEqual(true, thread.is_prime(53));
-			Assert::AreEqual(true, thread.is_prime(337));
-			*/
-		}
-
-		TEST_METHOD(primeThread_Test_3)
-		{
-			primeThread thread;
-			/*
-			Assert::AreEqual(false, thread.is_prime(1010));
-			Assert::AreEqual(false, thread.is_prime(95));
-			Assert::AreEqual(false, thread.is_prime(841));
-			Assert::AreEqual(false, thread.is_prime(106));
-			Assert::AreEqual(false, thread.is_prime(999));
-			*/
-		}
-
-		TEST_METHOD(primeThread_Test_42)
-		{
-			primeThread thread;
-
-			//Assert::AreEqual(true, thread.is_prime(2147483647));
-		}
-		
+			for (int candidate : primes_set1)
+				Assert::AreEqual(true, myUtilities::is_prime(candidate));
+			
+			for (int candidate : not_primes_set1)
+				Assert::AreEqual(false, myUtilities::is_prime(candidate));
+		}		
 	};
 
 	TEST_CLASS(TC_theQueue)
