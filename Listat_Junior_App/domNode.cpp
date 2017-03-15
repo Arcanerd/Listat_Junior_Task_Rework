@@ -11,7 +11,6 @@ void domNode::set_closing_tag()
 }
 
 domNode::domNode() {}
-
 //global
 domNode::domNode(std::string &_tag, spNode &_next, spNode &_parent, spNode &_sybling, cinterval &_interval):
 	tag(_tag),
