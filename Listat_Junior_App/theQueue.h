@@ -4,7 +4,6 @@
 #include "domNode.h"
 
 //add comments what is intent of creating this class
-//this class simulates queue of 
 class theQueue
 {
 	std::vector<cinterval> intrvls;
