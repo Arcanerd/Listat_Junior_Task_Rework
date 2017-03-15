@@ -7,7 +7,6 @@
 template <class T>
 class AbstractReader
 {
-
 public:
 	virtual STATUS::OPENING_STATUS read() = 0;
 	virtual const char* get_filepath() = 0;

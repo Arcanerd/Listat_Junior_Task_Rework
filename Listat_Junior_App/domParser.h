@@ -9,9 +9,6 @@ class theQueue;
 class domParser :
 	public AbstractReader <theQueue>
 {
-private:
-	std::string filepath;
-	std::shared_ptr<domNode> root;
 
 public:
 	domParser(std::string _filepath);
@@ -23,4 +20,8 @@ public:
 	virtual const char* get_filepath() override;
 	void set_filepath(std::string _path);
 	virtual std::shared_ptr<theQueue> get_data() override;
+
+private:
+	std::string filepath;
+	std::shared_ptr<domNode> root;
 };

@@ -8,9 +8,18 @@
 
 class primeThread
 {
-	
-private:
+public:
+	primeThread() {};
+	primeThread(std::shared_ptr<theQueue> _sp_queue);
+	~primeThread();
 
+	void ignite();
+	void stop();
+	void wait();
+
+	std::vector<std::vector<int>> get_primes() const;
+
+private:
 	synCounter scounter;
 	unsigned int ncores;
 	std::vector<std::thread> threads;
@@ -21,17 +30,5 @@ private:
 	
 	void run();
 	void generate_primes(cinterval &_intrvl);
-
-public:
-
-	primeThread() {};
-	primeThread(std::shared_ptr<theQueue> _sp_queue);
-	~primeThread();
-
-	void ignite();
-	void stop();
-	void wait();
-
-	std::vector<std::vector<int>> get_primes() const;	
 };
 

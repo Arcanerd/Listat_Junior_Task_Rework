@@ -10,8 +10,6 @@
 #include <atomic>
 #include <math.h>
 
-using namespace myUtilities;
-
 static const unsigned int DEFAULT_NCORES = 4;
 
 primeThread::primeThread(std::shared_ptr<theQueue> _sp_queue):
@@ -52,7 +50,7 @@ void primeThread::generate_primes(cinterval &_intrvl)
 
 	int num = _intrvl.low;
 	do {
-		if (is_prime(num))
+		if (myUtilities::is_prime(num))
 			result.emplace_back(num);
 		++num;
 	} while (num <= _intrvl.high);

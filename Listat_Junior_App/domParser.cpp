@@ -3,10 +3,6 @@
 #include "ReturnCodes.h"
 #include "utilityFunctions.h"
 
-using namespace myUtilities;
-//in general try to use the constructors only to construct an instance (invariant) withoud business logic or tricky initialization
-//e.g. how will you know that file.fail() if you exclude interaction with user here?
-
 const std::string root_opening_tag = "<root>";
 const std::string interval_openig_tag = "<interval>";
 const std::string Intervals_Openig_Tag = "<intervals>";
@@ -16,7 +12,6 @@ const std::string Intervals_Closing_Tag = "</intervals>";
 domParser::domParser(std::string _filepath):
 	filepath(_filepath)
 {
-	
 }
 
 STATUS::OPENING_STATUS domParser::read()
@@ -47,21 +42,21 @@ STATUS::OPENING_STATUS domParser::read()
 	bool intervals_closed = false;
 	do {
 		std::getline(file, input);
-		input = remove_insignificant_spaces(input);
+		input = myUtilities::remove_insignificant_spaces(input);
 		if (input == Intervals_Openig_Tag) {
 			do {
 				std::getline(file, input);
-				input = remove_insignificant_spaces(input);
+				input = myUtilities::remove_insignificant_spaces(input);
 				if (input == interval_openig_tag) {
 					int low = 0, high = 0;
 
 					std::getline(file, input);
-					input = remove_insignificant_spaces(input);
-					low = extract_bound(input);
+					input = myUtilities::remove_insignificant_spaces(input);
+					low = myUtilities::extract_bound(input);
 
 					std::getline(file, input);
-					input = remove_insignificant_spaces(input);
-					high = extract_bound(input);
+					input = myUtilities::remove_insignificant_spaces(input);
+					high = myUtilities::extract_bound(input);
 
 					cinterval interval(low, high);
 					std::string tag = interval_openig_tag;
@@ -69,7 +64,7 @@ STATUS::OPENING_STATUS domParser::read()
 					root->append_sybling(new_spnode);
 					
 					std::getline(file, input);
-					input = remove_insignificant_spaces(input);
+					input = myUtilities::remove_insignificant_spaces(input);
 				}
 			} while (input != Intervals_Closing_Tag);
 			intervals_closed = true;

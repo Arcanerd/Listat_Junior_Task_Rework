@@ -3,9 +3,7 @@
 
 class AbstractWriter
 {
-
-public:
-	
+public:	
 	virtual void write() = 0;
 	virtual ~AbstractWriter() = default;
 };

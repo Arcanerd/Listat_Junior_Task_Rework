@@ -66,7 +66,6 @@ namespace myUtilities
 		std::string numstr(_str, begin, end - begin);
 		return std::stoi(numstr);
 	}
-	
 	void print_out(std::shared_ptr<domNode> &root, int grade)
 	{
 		++grade;
@@ -84,5 +83,4 @@ namespace myUtilities
 			print_out(root->get_next(), grade);
 		std::cout << tab << root->get_closing_tag() << std::endl;
 	}
-
 }

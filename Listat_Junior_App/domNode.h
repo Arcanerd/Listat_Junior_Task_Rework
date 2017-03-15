@@ -5,17 +5,6 @@ class domNode
 {
 	typedef std::shared_ptr<domNode> spNode;
 
-private:
-	std::string tag;
-	std::string closing_tag;
-	spNode next;
-	spNode parent;
-	spNode sybling;
-	cinterval interval;
-
-private:
-	void set_closing_tag();
-
 public:
 
 	domNode();
@@ -29,7 +18,7 @@ public:
 	domNode(std::string &_tag, spNode &_next, spNode &_parent, spNode &_sybling);
 	//for interval
 	domNode(std::string &_tag, spNode &_parent, cinterval &_interval);
-	
+
 	~domNode() = default;
 
 	void set_tag(const std::string _tag);
@@ -47,6 +36,16 @@ public:
 	spNode set_parent() const;
 	spNode get_sybling() const;
 	cinterval get_interval() const;
-	
+
+private:
+	void set_closing_tag();
+
+private:
+	std::string tag;
+	std::string closing_tag;
+	spNode next;
+	spNode parent;
+	spNode sybling;
+	cinterval interval;
 };
 
