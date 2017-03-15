@@ -45,7 +45,7 @@ namespace Listat_Junior_UnitTest
 		}
 	};
 
-	TEST_CLASS(TC_primeThread)
+	TEST_CLASS(TC_utilityFunctions)
 	{
 	public:
 		TEST_METHOD(PrimesCalculation_Test)
@@ -62,6 +62,55 @@ namespace Listat_Junior_UnitTest
 			for (int candidate : not_primes_set1)
 				Assert::AreEqual(false, myUtilities::is_prime(candidate));
 		}		
+		TEST_METHOD(remove_insignificant_spaces_test)
+		{
+		}
+
+		TEST_METHOD(extrcat_tag_test)
+		{
+			std::string expected_result = "<tag>";
+			
+			std::string input = "<tag> symbols";			
+			Assert::AreEqual(expected_result, myUtilities::extrcat_tag(input));
+
+			input = "<tag>symbols";
+			Assert::AreEqual(expected_result, myUtilities::extrcat_tag(input));
+		}
+
+		TEST_METHOD(extract_bound_test)
+		{
+			int expected_result = 100;
+			std::string input;
+			
+			//no spaces
+			input = "<tag>100</tag>";
+			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
+			
+			//space before number
+			input = "<tag> 100</tag>";
+			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
+
+			//space after number
+			input = "<tag>100 </tag>";
+			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
+
+			//space before AND after number
+			input = "<tag> 100 </tag>";
+			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
+
+			input = "<tag> 10f0 </tag>";
+			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
+		}
+	};
+
+	TEST_CLASS(TC_primeThread)
+	{
+	public:
+		TEST_METHOD(primeThread_Constructors_Test)
+		{
+
+
+		}
 	};
 
 	TEST_CLASS(TC_theQueue)

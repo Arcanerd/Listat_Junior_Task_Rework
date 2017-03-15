@@ -55,17 +55,18 @@ namespace myUtilities
 	}
 	std::string extrcat_tag(std::string & _str)
 	{
-		std::string extracted(_str, 0, _str.find(' '));
+		std::string extracted(_str, 0, _str.find('>')+1);
 		return extracted;
 	}
 	int extract_bound(std::string &_str)
 	{
 
-		size_t begin = _str.find_first_of(' ');
+		size_t begin = _str.find_first_of('>')+1;
 		size_t end = _str.find_last_of('<');
 		std::string numstr(_str, begin, end - begin);
 		return std::stoi(numstr);
 	}
+	
 	void print_out(std::shared_ptr<domNode> &root, int grade)
 	{
 		++grade;
