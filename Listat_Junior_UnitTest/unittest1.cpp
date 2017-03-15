@@ -82,22 +82,16 @@ namespace Listat_Junior_UnitTest
 			int expected_result = 100;
 			std::string input;
 			
-			//no spaces
-			input = "<tag>100</tag>";
-			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
+			std::vector<std::string> test_set1 = {
+				"<tag>100< / tag>",
+				"<tag> 100</tag>" ,
+				"<tag>100 </tag>" ,
+				"<tag> 100 </tag>" };
+
+			for (std::string input : test_set1)
+				Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
 			
-			//space before number
-			input = "<tag> 100</tag>";
-			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
-
-			//space after number
-			input = "<tag>100 </tag>";
-			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
-
-			//space before AND after number
-			input = "<tag> 100 </tag>";
-			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
-
+			//
 			input = "<tag> 10f0 </tag>";
 			Assert::AreNotEqual(expected_result, myUtilities::extract_bound(input));
 		}
