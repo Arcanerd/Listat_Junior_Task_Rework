@@ -77,20 +77,52 @@ namespace Listat_Junior_UnitTest
 			Assert::AreEqual(expected_result, myUtilities::extrcat_tag(input));
 		}
 
-		TEST_METHOD(extract_bound_test)
+		TEST_METHOD(extract_bound_test_no_spaces)
 		{
 			int expected_result = 100;
 			std::string input;
 			
-			std::vector<std::string> test_set1 = {
-				"<tag>100< / tag>",
-				"<tag> 100</tag>" ,
-				"<tag>100 </tag>" ,
-				"<tag> 100 </tag>" };
-
-			for (std::string input : test_set1)
-				Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
+			//no spaces
+			input = "<tag>100</tag>";
+			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
 			
+		}
+
+		TEST_METHOD(extract_bound_test_space_before)
+		{
+			int expected_result = 100;
+			std::string input;
+
+			//space before number
+			input = "<tag> 100</tag>";
+			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
+		}
+
+		TEST_METHOD(extract_bound_test_space_after)
+		{
+			int expected_result = 100;
+			std::string input;
+
+			//space after number
+			input = "<tag>100 </tag>";
+			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
+		}
+
+		TEST_METHOD(extract_bound_test_spaces_before_AND_after)
+		{
+			int expected_result = 100;
+			std::string input;
+
+			//space before AND after number
+			input = "<tag> 100 </tag>";
+			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
+		}
+
+		TEST_METHOD(extract_bound_test_disrupted_number)
+		{
+			int expected_result = 100;
+			std::string input;
+
 			//
 			input = "<tag> 10f0 </tag>";
 			Assert::AreNotEqual(expected_result, myUtilities::extract_bound(input));
