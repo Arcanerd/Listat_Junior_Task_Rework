@@ -99,7 +99,7 @@ namespace Listat_Junior_UnitTest
 			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
 
 			input = "<tag> 10f0 </tag>";
-			Assert::AreEqual(expected_result, myUtilities::extract_bound(input));
+			Assert::AreNotEqual(expected_result, myUtilities::extract_bound(input));
 		}
 	};
 
