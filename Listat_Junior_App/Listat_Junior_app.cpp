@@ -18,10 +18,10 @@ int main(int argc, char** argv)
 	parser->read();
 	std::shared_ptr<theQueue> queue = parser->get_data();
 
-	primeThread primes_calc(queue);//how to start calculation in 4 threads?
-	primes_calc.ignite();//inside we stops main thread when falls into join(). Where is calculation in separate thread if we must wait for completing?
-
+	primeThread primes_calc(queue);
+	primes_calc.ignite();
 	std::string write_path = parser->get_filepath();
+	primes_calc.wait();
 	std::shared_ptr<AbstractWriter> writer(new Writer(write_path, primes_calc.get_primes()));
 	writer->write();
 

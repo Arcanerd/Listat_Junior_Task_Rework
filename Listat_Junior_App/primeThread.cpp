@@ -8,38 +8,39 @@
 #include <chrono>
 #include <functional>
 #include <atomic>
+#include <math.h>
 
 using namespace myUtilities;
 
+static const unsigned int DEFAULT_NCORES = 4;
 
 primeThread::primeThread(std::shared_ptr<theQueue> _sp_queue):
-	sp_queue(_sp_queue)
+	sp_queue(_sp_queue),
+	ncores(0)
 {
 }
 
 primeThread::~primeThread()
-{}
+{
+	for (auto &t : threads) {
+		if (t.joinable())
+			t.join();
+	}
+}
 
 void primeThread::ignite()
 {
-	std::thread sp_thread_1;
-	std::thread sp_thread_2;
-
-	sp_thread_1 = std::thread(&primeThread::run, this);
-	sp_thread_2 = std::thread(&primeThread::run, this);
-	
-	if (sp_thread_1.joinable())
-		sp_thread_1.join();
-
-	if (sp_thread_2.joinable())
-		sp_thread_2.join();		
+	ncores = std::max(std::thread::hardware_concurrency(), DEFAULT_NCORES);
+	for(unsigned int i = 0; i < ncores; ++i)
+		threads.emplace_back(std::thread(&primeThread::run, this));
+	scounter.set_nintervals(sp_queue->get_number_of_intervals());
 }
 
 void primeThread::run()
 {
-
 	while (!sp_queue->is_empty())
 		generate_primes(sp_queue->get_interval());
+	scounter.increment();
 }
 
 void primeThread::generate_primes(cinterval &_intrvl)
@@ -56,8 +57,20 @@ void primeThread::generate_primes(cinterval &_intrvl)
 		++num;
 	} while (num <= _intrvl.high);
 	
-	std::lock_guard<std::mutex> primes_guard(primes_mutex);
+	std::lock_guard<std::mutex> primes_guard(primes_vec_mutex);
 	primes.emplace_back(result);
+}
+void primeThread::stop()
+{
+	for (auto &t : threads) {
+		if (t.joinable())
+			t.join();
+	}
+}
+
+void  primeThread::wait()
+{
+	scounter.wait_signal();
 }
 
 std::vector<std::vector<int>> primeThread::get_primes() const

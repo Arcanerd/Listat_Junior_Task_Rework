@@ -67,11 +67,14 @@ STATUS::OPENING_STATUS domParser::read()
 					std::string tag = interval_openig_tag;
 					std::shared_ptr<domNode> new_spnode(new domNode(tag, root, interval));
 					root->append_sybling(new_spnode);
+					
+					std::getline(file, input);
+					input = remove_insignificant_spaces(input);
 				}
 			} while (input != Intervals_Closing_Tag);
 			intervals_closed = true;
 		}
-	} while (file.good() && intervals_closed);
+	} while (file.good() && !intervals_closed);
 
 	if (!file.good() && intervals_closed == false) {
 		return STATUS::OPENING_STATUS::WRONG_STRUCTURE;

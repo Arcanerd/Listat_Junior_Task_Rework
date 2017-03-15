@@ -36,6 +36,11 @@ cinterval theQueue::get_interval()
 	return pop_front_interval();
 }
 
+size_t theQueue::get_number_of_intervals() const
+{
+	return intrvls.size();
+}
+
 bool theQueue::is_empty() const 
 {
 	std::lock_guard<std::mutex> guard(intrvls_mutex);

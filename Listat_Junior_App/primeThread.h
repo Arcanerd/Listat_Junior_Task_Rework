@@ -1,15 +1,22 @@
 #pragma once
 #include "theQueue.h"
+#include "synCounter.h"
 
 #include <thread>
 #include <mutex>
+#include <memory>
 
 class primeThread
 {
 	
 private:
-	std::shared_ptr<theQueue> sp_queue;
-	std::mutex primes_mutex;
+
+	synCounter scounter;
+	unsigned int ncores;
+	std::vector<std::thread> threads;
+	
+	std::mutex primes_vec_mutex;
+	std::shared_ptr<theQueue> sp_queue;	
 	std::vector<std::vector<int>> primes;
 	
 	void run();
@@ -22,6 +29,8 @@ public:
 	~primeThread();
 
 	void ignite();
+	void stop();
+	void wait();
 
 	std::vector<std::vector<int>> get_primes() const;	
 };

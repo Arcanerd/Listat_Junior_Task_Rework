@@ -24,6 +24,7 @@ public:
 	~theQueue() = default;
 
 	cinterval get_interval();
+	size_t get_number_of_intervals() const;
 	bool is_empty() const;
 };
 
