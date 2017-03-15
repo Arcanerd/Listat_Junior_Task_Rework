@@ -42,20 +42,20 @@ STATUS::OPENING_STATUS domParser::read()
 	bool intervals_closed = false;
 	do {
 		std::getline(file, input);
-		input = myUtilities::remove_insignificant_spaces(input);
+		input = myUtilities::trime(input);
 		if (input == Intervals_Openig_Tag) {
 			do {
 				std::getline(file, input);
-				input = myUtilities::remove_insignificant_spaces(input);
+				input = myUtilities::trime(input);
 				if (input == interval_openig_tag) {
 					int low = 0, high = 0;
 
 					std::getline(file, input);
-					input = myUtilities::remove_insignificant_spaces(input);
+					input = myUtilities::trime(input);
 					low = myUtilities::extract_bound(input);
 
 					std::getline(file, input);
-					input = myUtilities::remove_insignificant_spaces(input);
+					input = myUtilities::trime(input);
 					high = myUtilities::extract_bound(input);
 
 					cinterval interval(low, high);
@@ -64,7 +64,7 @@ STATUS::OPENING_STATUS domParser::read()
 					root->append_sybling(new_spnode);
 					
 					std::getline(file, input);
-					input = myUtilities::remove_insignificant_spaces(input);
+					input = myUtilities::trime(input);
 				}
 			} while (input != Intervals_Closing_Tag);
 			intervals_closed = true;

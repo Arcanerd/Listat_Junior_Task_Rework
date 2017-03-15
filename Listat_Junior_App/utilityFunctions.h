@@ -7,7 +7,7 @@ namespace myUtilities
 {
 	bool is_prime(int _num);
 	
-	std::string remove_insignificant_spaces(std::string &_inspstr);
+	std::string trime(const std::string &_inspstr);
 	std::string extrcat_tag(std::string &_str);
 	int extract_bound(std::string &_str);
 

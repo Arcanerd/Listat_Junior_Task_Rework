@@ -11,7 +11,7 @@ namespace myUtilities
 		else if (_num % 2 == 0)
 			return false;
 		//try divide for i
-		for (int i = 3; i <= _num / 3; i += 2) {
+		for (int i = 3; i <= _num / i; i += 2) {
 			if (_num%i == 0)
 				return false;
 		}
@@ -21,35 +21,10 @@ namespace myUtilities
 	//friends
 	//this operation usually called trim
 
-	std::string remove_insignificant_spaces(std::string &_inspstr)//param isn't const
 	{
 		//for me it is preferable to return at once. it allows to keep less details of the context in mind
 		//compare:
-		//if (_inspstr.empty())
-		//	return _inspstr;
 
-		//const std::size_t begin = _inspstr.find_first_not_of(' ');
-		//const std::size_t end = _inspstr.find_last_not_of(' ');
-		//const std::size_t contentLength = end - begin;
-		//const bool isInvalidInput = contentLength > 1;
-		//if (isInvalidInput)
-		//	return "\n";
-		//const std::string trimmed = _inspstr.substr(begin, contentLength);
-		//return trimmed;
-
-		if (_inspstr.size()) {//use _inspstr.empty()
-			std::size_t begin = _inspstr.find_first_not_of(' ');
-			std::size_t end = _inspstr.find_last_not_of(' ');
-			//what happen if _inspstr doesn't contains any ' ' or only one?
-			std::string result(_inspstr, begin, end - begin + 1);
-
-			if (result.size())
-				return result;
-			else
-				return "\n";
-		}
-
-		else
 			return _inspstr;
 
 	}
