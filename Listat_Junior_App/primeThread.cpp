@@ -18,24 +18,28 @@ primeThread::primeThread(std::shared_ptr<theQueue> _sp_queue):
 }
 
 primeThread::~primeThread()
-{
-	if (sp_thread.joinable())
-		sp_thread.join();
-}
+{}
 
 void primeThread::ignite()
 {
-	sp_thread = std::thread(&primeThread::run, this);
+	std::thread sp_thread_1;
+	std::thread sp_thread_2;
+
+	sp_thread_1 = std::thread(&primeThread::run, this);
+	sp_thread_2 = std::thread(&primeThread::run, this);
 	
-	if (sp_thread.joinable())
-		sp_thread.join();
+	if (sp_thread_1.joinable())
+		sp_thread_1.join();
+
+	if (sp_thread_2.joinable())
+		sp_thread_2.join();		
 }
 
 void primeThread::run()
 {
+
 	while (!sp_queue->is_empty())
 		generate_primes(sp_queue->get_interval());
-
 }
 
 void primeThread::generate_primes(cinterval &_intrvl)
@@ -52,6 +56,7 @@ void primeThread::generate_primes(cinterval &_intrvl)
 		++num;
 	} while (num <= _intrvl.high);
 	
+	std::lock_guard<std::mutex> primes_guard(primes_mutex);
 	primes.emplace_back(result);
 }
 

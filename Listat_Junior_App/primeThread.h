@@ -2,18 +2,18 @@
 #include "theQueue.h"
 
 #include <thread>
+#include <mutex>
 
 class primeThread
 {
-
-	std::thread sp_thread;
+	
+private:
 	std::shared_ptr<theQueue> sp_queue;
-
+	std::mutex primes_mutex;
 	std::vector<std::vector<int>> primes;
 	
 	void run();
 	void generate_primes(cinterval &_intrvl);
-	
 
 public:
 

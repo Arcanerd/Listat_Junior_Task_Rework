@@ -32,10 +32,12 @@ cinterval theQueue::pop_front_interval()
 
 cinterval theQueue::get_interval()
 {
+	std::lock_guard<std::mutex> guard(intrvls_mutex);
 	return pop_front_interval();
 }
 
 bool theQueue::is_empty() const 
 {
+	std::lock_guard<std::mutex> guard(intrvls_mutex);
 	return (start > finish);
 }

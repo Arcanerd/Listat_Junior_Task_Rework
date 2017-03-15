@@ -38,13 +38,11 @@ namespace Listat_Junior_UnitTest
 			std::string tag = "tag";			
 			spNode nulshptr = nullptr;
 			cinterval interval(0, 0);
-
-			domNode dom_node1(tag);
 				
 			//global
 			domNode(tag, nulshptr, nulshptr, nulshptr, interval);
 			//for root
-			domNode dom_node3(tag);
+			domNode dom_node1(tag);
 			//for noninterval basic
 			domNode(tag, nulshptr);
 			//for noninterval

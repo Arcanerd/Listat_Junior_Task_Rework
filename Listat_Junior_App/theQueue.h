@@ -2,11 +2,14 @@
 
 #include "stdafx.h"
 #include "domNode.h"
+#include <mutex>
 
 //add comments what is intent of creating this class
 class theQueue
 {
+	mutable std::mutex intrvls_mutex;
 	std::vector<cinterval> intrvls;
+
 	size_t finish;
 	size_t start;
 	
