@@ -21,11 +21,11 @@ namespace myUtilities
 	//friends
 	//this operation usually called trim
 
-	{
+//	{
 		//for me it is preferable to return at once. it allows to keep less details of the context in mind
 		//compare:
 
-			return _inspstr;
+			//return _inspstr;
 
 	}
 	std::string extrcat_tag(std::string & _str)
