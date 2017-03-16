@@ -11,14 +11,14 @@ class domParser :
 {
 
 public:
-	domParser(std::string _filepath);
+	domParser(std::string &_filepath);
 	~domParser() = default;
 
 	virtual STATUS::OPENING_STATUS read() override;
 
-	std::shared_ptr<domNode> get_root();
+	std::shared_ptr<domNode> get_root() const;
 	virtual const char* get_filepath() override;
-	void set_filepath(std::string _path);
+	void set_filepath(std::string &_path);
 	virtual std::shared_ptr<theQueue> get_data() override;
 
 private:

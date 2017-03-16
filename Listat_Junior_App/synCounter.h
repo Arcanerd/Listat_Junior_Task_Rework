@@ -5,7 +5,7 @@
 class synCounter
 {
 public:
-	synCounter() = default;
+	synCounter();
 	synCounter(size_t _nintervals);
 	~synCounter() = default;
 

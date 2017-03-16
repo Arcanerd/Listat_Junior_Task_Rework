@@ -81,7 +81,6 @@ namespace Listat_Junior_UnitTest
 			Assert::AreEqual(size_t(0), queue.get_number_of_intervals());
 			Assert::AreEqual(true, queue.is_empty());
 		}
-
 	};
 
 	TEST_CLASS(TC_synCounter)
@@ -90,7 +89,7 @@ namespace Listat_Junior_UnitTest
 		TEST_METHOD(synCounter_constructor_Test)
 		{
 			size_t nintervals = 9;
-			synCounter scounter (nintervals);
+			synCounter scounter(nintervals);
 		}
 	};
 

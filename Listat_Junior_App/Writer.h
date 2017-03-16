@@ -8,7 +8,7 @@ class Writer :
 	public AbstractWriter
 {
 public:
-	Writer(std::string _filepath, std::vector<std::vector<int>> &data);
+	Writer(std::string &_filepath, std::vector<std::vector<int>> &data);
 	virtual ~Writer() = default;
 
 	std::string get_filepath() const;

@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "synCounter.h"
 
+synCounter::synCounter():
+	nintervals(0),
+	counter(0)
+{}
 synCounter::synCounter(size_t _nintervals):
 	nintervals(_nintervals),
 	counter(0)

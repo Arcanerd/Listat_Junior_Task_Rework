@@ -21,7 +21,7 @@ public:
 
 	~domNode() = default;
 
-	void set_tag(const std::string _tag);
+	void set_tag(const std::string &_tag);
 	void set_next(const spNode &_next);
 	void set_parent(const spNode &_parent);
 	void set_sybling(const spNode &_sybling);

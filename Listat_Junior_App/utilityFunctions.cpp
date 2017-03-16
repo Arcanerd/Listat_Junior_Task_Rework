@@ -23,7 +23,6 @@ namespace myUtilities
 
 	std::string trime(const std::string &_inspstr)
 	{
-
 		if (_inspstr.empty())
 			return _inspstr;
 

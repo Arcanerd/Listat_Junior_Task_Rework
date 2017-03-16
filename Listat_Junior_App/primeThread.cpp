@@ -12,9 +12,10 @@
 
 static const unsigned int DEFAULT_NCORES = 4;
 
-primeThread::primeThread(std::shared_ptr<theQueue> _sp_queue):
+primeThread::primeThread(std::shared_ptr<theQueue> &_sp_queue):
 	sp_queue(_sp_queue),
-	ncores(0)
+	ncores(0),
+	scounter(0)
 {
 }
 
@@ -29,9 +30,9 @@ primeThread::~primeThread()
 void primeThread::ignite()
 {
 	ncores = std::max(std::thread::hardware_concurrency(), DEFAULT_NCORES);
+	scounter.set_nintervals(sp_queue->get_number_of_intervals());
 	for(unsigned int i = 0; i < ncores; ++i)
 		threads.emplace_back(std::thread(&primeThread::run, this));
-	scounter.set_nintervals(sp_queue->get_number_of_intervals());
 }
 
 void primeThread::run()

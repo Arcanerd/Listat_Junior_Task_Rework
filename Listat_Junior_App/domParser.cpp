@@ -9,7 +9,7 @@ const std::string Intervals_Openig_Tag = "<intervals>";
 const std::string Intervals_Closing_Tag = "</intervals>";
 
 
-domParser::domParser(std::string _filepath):
+domParser::domParser(std::string &_filepath):
 	filepath(_filepath)
 {
 }
@@ -20,7 +20,6 @@ STATUS::OPENING_STATUS domParser::read()
 	std::string input;
 
 	//check file;
-	bool file_incorrect = true;
 
 	file.open(filepath, std::ifstream::in);
 	if (file.fail()) {
@@ -28,6 +27,9 @@ STATUS::OPENING_STATUS domParser::read()
 		return STATUS::OPENING_STATUS::COULD_NOT_OPEN;
 	}
 	else {
+
+		bool file_incorrect = true;
+
 		std::getline(file, input);
 		if (input == root_opening_tag) {
 			file_incorrect = false;
@@ -80,7 +82,7 @@ STATUS::OPENING_STATUS domParser::read()
 }
 
 
-std::shared_ptr<domNode> domParser::get_root()
+std::shared_ptr<domNode> domParser::get_root() const
 {
 	return root;
 }
@@ -88,7 +90,7 @@ const char* domParser::get_filepath()
 {
 	return filepath.c_str();
 };
-void domParser::set_filepath(std::string _path)
+void domParser::set_filepath(std::string &_path)
 {
 	filepath = _path;
 }

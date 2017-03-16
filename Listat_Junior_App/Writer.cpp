@@ -3,7 +3,7 @@
 
 
 
-Writer::Writer(std::string _filepath, std::vector<std::vector<int>> &data) :
+Writer::Writer(std::string &_filepath, std::vector<std::vector<int>> &data) :
 	ints_to_write(data),
 	filepath(_filepath)
 {
