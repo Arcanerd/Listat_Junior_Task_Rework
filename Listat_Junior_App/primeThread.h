@@ -10,7 +10,7 @@ class primeThread
 {
 public:
 	primeThread() {};
-	explicit primeThread(std::shared_ptr<theQueue> &_sp_queue);
+	primeThread(std::shared_ptr<theQueue> _sp_queue);
 	~primeThread();
 
 	void ignite();

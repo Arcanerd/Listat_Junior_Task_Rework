@@ -6,7 +6,7 @@ class synCounter
 {
 public:
 	synCounter() = default;
-	explicit synCounter(size_t _nintervals);
+	synCounter(size_t _nintervals);
 	~synCounter() = default;
 
 	void increment();

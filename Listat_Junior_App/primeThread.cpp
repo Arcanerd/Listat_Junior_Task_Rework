@@ -12,7 +12,7 @@
 
 static const unsigned int DEFAULT_NCORES = 4;
 
-primeThread::primeThread(std::shared_ptr<theQueue> &_sp_queue):
+primeThread::primeThread(std::shared_ptr<theQueue> _sp_queue):
 	sp_queue(_sp_queue),
 	ncores(0)
 {

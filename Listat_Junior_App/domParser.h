@@ -11,7 +11,7 @@ class domParser :
 {
 
 public:
-	explicit domParser(std::string &_filepath);
+	domParser(std::string _filepath);
 	~domParser() = default;
 
 	virtual STATUS::OPENING_STATUS read() override;

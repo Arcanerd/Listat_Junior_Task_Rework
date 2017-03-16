@@ -39,7 +39,7 @@ domNode::domNode(std::string &_tag, spNode &_parent, cinterval &_interval):
 	domNode(_tag, spNode(nullptr), _parent, spNode(nullptr), _interval)
 {}
 
-void domNode::set_tag(const std::string &_tag) { tag = _tag; };
+void domNode::set_tag(const std::string _tag) { tag = _tag; };
 void domNode::set_next(const spNode &_next) { next = _next; }
 void domNode::set_parent(const spNode &_parent) { parent = _parent; }
 void domNode::set_sybling(const spNode &_sybling) { sybling = _sybling; }
