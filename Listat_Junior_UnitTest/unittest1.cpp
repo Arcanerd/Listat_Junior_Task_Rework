@@ -80,7 +80,6 @@ namespace Listat_Junior_UnitTest
 
 			Assert::AreEqual(size_t(0), queue.get_number_of_intervals());
 			Assert::AreEqual(true, queue.is_empty());
-
 		}
 
 	};

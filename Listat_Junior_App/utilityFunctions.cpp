@@ -21,12 +21,20 @@ namespace myUtilities
 	//friends
 	//this operation usually called trim
 
-//	{
-		//for me it is preferable to return at once. it allows to keep less details of the context in mind
-		//compare:
+	std::string trime(const std::string &_inspstr)
+	{
 
-			//return _inspstr;
+		if (_inspstr.empty())
+			return _inspstr;
 
+		const std::size_t begin = _inspstr.find_first_not_of(' ');
+		const std::size_t end = _inspstr.find_last_not_of(' ') + 1;
+		const std::size_t contentLength = end - begin;
+		const bool isInvalidInput = (contentLength > 1);
+		if (!isInvalidInput)
+			return "\n";
+		const std::string trimmed = _inspstr.substr(begin, contentLength);
+		return trimmed;
 	}
 	std::string extrcat_tag(std::string & _str)
 	{
