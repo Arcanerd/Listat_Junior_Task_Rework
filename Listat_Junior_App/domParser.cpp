@@ -21,14 +21,14 @@ STATUS::OPENING_STATUS domParser::read()
 
 	//check file;
 
+	bool file_incorrect = true;
+
 	file.open(filepath, std::ifstream::in);
 	if (file.fail()) {
 		std::cout << "ERROR! Could not open the file!" << std::endl;
 		return STATUS::OPENING_STATUS::COULD_NOT_OPEN;
 	}
 	else {
-
-		bool file_incorrect = true;
 
 		std::getline(file, input);
 		if (input == root_opening_tag) {
@@ -41,7 +41,6 @@ STATUS::OPENING_STATUS domParser::read()
 	}
 	
 	//read intervals from file
-	bool intervals_closed = false;
 	do {
 		std::getline(file, input);
 		input = myUtilities::trime(input);
@@ -69,14 +68,9 @@ STATUS::OPENING_STATUS domParser::read()
 					input = myUtilities::trime(input);
 				}
 			} while (input != Intervals_Closing_Tag);
-			intervals_closed = true;
 		}
-	} while (file.good() && !intervals_closed);
-
-	if (!file.good() && intervals_closed == false) {
-		return STATUS::OPENING_STATUS::WRONG_STRUCTURE;
-		file.close();
-	}
+	} while (file.good());
+	
 	file.close();
 	return STATUS::OPENING_STATUS::EVERYTHING_OK;
 }

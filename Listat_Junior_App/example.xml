@@ -2,19 +2,19 @@
   <intervals>
     <interval>
       <low> 1 </low>
-      <high> 1000</high>
+      <high> 100</high>
     </interval>
     <interval>
-       <low> 1001</low>
-       <high> 2000</high>
+       <low> 101</low>
+       <high> 200</high>
      </interval>
     <interval>
-       <low> 2001</low>
-       <high> 3000</high>
+       <low> 201</low>
+       <high> 300</high>
      </interval>
     <interval>
-       <low> 3001</low>
-       <high> 4000</high>
+       <low> 301</low>
+       <high> 400</high>
      </interval>
    </intervals>
 </root>
