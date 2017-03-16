@@ -11,7 +11,7 @@ public:
 	//global
 	domNode(std::string &_tag, spNode &_next, spNode &_sybling, spNode &_parent, cinterval &_interval);
 	//for root
-	domNode(std::string &_tag);
+	explicit domNode(std::string &_tag);
 	//for noninterval basic
 	domNode(std::string &_tag, spNode &_parent);
 	//for noninterval
