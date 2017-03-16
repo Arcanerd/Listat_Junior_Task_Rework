@@ -169,6 +169,9 @@
     <ClCompile Include="utilityFunctions.cpp" />
     <ClCompile Include="Writer.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="example.xml" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

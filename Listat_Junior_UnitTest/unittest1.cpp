@@ -9,11 +9,6 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-//unit tests should be named in accordance with some templates
-// test name should be meaningful: developers have to gain from the name of a failed test as much as possible
-
-
-
 namespace Listat_Junior_UnitTest
 {		
 	TEST_CLASS(TC_Cinterval)
@@ -66,7 +61,8 @@ namespace Listat_Junior_UnitTest
 	public:
 		TEST_METHOD(primeThread_Constructors_Test)
 		{
-			primeThread prThread(std::shared_ptr<theQueue>(nullptr));
+			std::shared_ptr<theQueue> nlptr_queue(nullptr);
+			primeThread prThread(nlptr_queue);
 		}
 	};
 
@@ -112,10 +108,6 @@ namespace Listat_Junior_UnitTest
 			std::string input = " data ";
 			std::string expected = "data";
 			Assert::AreEqual(expected, myUtilities::trime(input));
-
-			input = " ";
-			expected = "\n";
-			Assert::AreEqual(expected, myUtilities::trime(input));
 		}
 		TEST_METHOD(trime_test_single_space)
 		{
@@ -123,7 +115,6 @@ namespace Listat_Junior_UnitTest
 			std::string expected = "\n";
 			Assert::AreEqual(expected, myUtilities::trime(input));
 		}
-
 		TEST_METHOD(extrcat_tag_test)
 		{
 			std::string expected_result = "<tag>";
