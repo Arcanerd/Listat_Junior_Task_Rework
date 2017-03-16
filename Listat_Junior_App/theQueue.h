@@ -10,7 +10,7 @@
 class theQueue
 {
 public:
-	theQueue(std::shared_ptr<domNode> &root);
+	explicit  theQueue(std::shared_ptr<domNode> &root);
 	~theQueue() = default;
 
 	cinterval get_interval();

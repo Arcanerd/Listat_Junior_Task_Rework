@@ -9,7 +9,7 @@ const std::string Intervals_Openig_Tag = "<intervals>";
 const std::string Intervals_Closing_Tag = "</intervals>";
 
 
-domParser::domParser(std::string _filepath):
+domParser::domParser(std::string &_filepath):
 	filepath(_filepath)
 {
 }
