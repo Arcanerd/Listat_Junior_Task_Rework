@@ -4,7 +4,7 @@
 
 theQueue::theQueue(std::shared_ptr<domNode> &root)
 {
-	if (root != nullptr && root->get_sybling() != nullptr ) {
+	if (root->get_sybling() != nullptr) {
 		fill_intrvls(root->get_sybling());
 		finish = intrvls.size() - 1;
 		start = 0;
@@ -44,7 +44,5 @@ size_t theQueue::get_number_of_intervals() const
 bool theQueue::is_empty() const 
 {
 	std::lock_guard<std::mutex> guard(intrvls_mutex);
-	if (intrvls.empty())
-		return true;
 	return (start > finish);
 }
