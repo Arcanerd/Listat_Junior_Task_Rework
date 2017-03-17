@@ -67,8 +67,9 @@ STATUS::OPENING_STATUS domParser::read()
 					std::getline(file, input);
 					input = myUtilities::trime(input);
 				}
-			} while (input != Intervals_Closing_Tag);
+			} while (input != Intervals_Closing_Tag && file.good());
 		}
+		//TODO: avoid redundant reading after intervals read?
 	} while (file.good());
 	
 	file.close();
